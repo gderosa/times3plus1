@@ -2,8 +2,13 @@
 
 import sys
 
+import matplotlib.pyplot as plt
+
 x = 0
 y = int(sys.argv[1])
+
+X = []
+Y = []
 
 def odd(n):
     return n % 2
@@ -11,12 +16,19 @@ def odd(n):
 def even(n):
     return not odd(n)
 
-print("x,y")
 while y != 1:
     if odd(y):
         y = y*3 + 1
     else:
         y = y // 2
-    print(f"{x},{y}")
+
     x += 1
+
+    print(y)
+
+    X.append(x)
+    Y.append(y)
+
+plt.plot(X, Y)
+plt.show()
 
