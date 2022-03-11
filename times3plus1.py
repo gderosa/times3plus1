@@ -13,9 +13,6 @@ Y = []
 def odd(n):
     return n % 2
 
-def even(n):
-    return not odd(n)
-
 while y != 1:
     if odd(y):
         y = y*3 + 1
@@ -24,7 +21,7 @@ while y != 1:
 
     x += 1
 
-    print(y)
+    # print(y)  # DEBUG
 
     X.append(x)
     Y.append(y)
