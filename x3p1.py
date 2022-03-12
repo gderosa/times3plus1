@@ -119,9 +119,10 @@ plt.title(f'"3y+1" problem. Max y_init (seed) = {MAX_Y_INIT}')
 plt.plot(tallest_X, tallest_Y, label=f"\"Tallest\" @ y_init={tallest_y_init}")
 plt.plot( widest_X,  widest_Y, label=f"\"Widest\" @ y_init={  widest_y_init}")
 plt.legend()
+plt.tight_layout(rect=(-0.015, 0, 1, 1))
 manager = plt.get_current_fig_manager()
-manager.full_screen_toggle()
-plt.tight_layout()
-plt.tight_layout()
-# Optional: If you have an ATI Radeon: https://www.amd.com/en/support/kb/release-notes/rn-amdgpu-unified-linux-21-10
+if hasattr(manager, 'window'):
+    manager.window.showMaximized()
 plt.show()
+
+# Optional: If you have an ATI Radeon: https://www.amd.com/en/support/kb/release-notes/rn-amdgpu-unified-linux-21-10
