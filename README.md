@@ -2,6 +2,11 @@
 
 See https://www.youtube.com/watch?v=094y1Z2wpJg.
 
+## Requirements
+
+* A recent Python 3.
+* [Matplotlib](https://matplotlib.org/).
+
 ## Usage
 
 ```
@@ -11,8 +16,8 @@ python x3p1.py <max_initial_value>
 It will draw two lines: the one which reaches the higest peak,
 and the one which "lasts longer" before reaching the value of 1.
 
-All attempted sequences (with a different initial value ranging from 1 to `max_initial_value`)
-are interrupted when the value `1` is reached (otherwise, from there, it will just continue
+All attempted sequences (with a different initial value ranging up to `max_initial_value`)
+are computed, but interrupted when the value `1` is reached (otherwise, from there, it will just continue
 in a loop 1, 4, 2, 1, 4, 2, 1, 4, 2, 1, ...).
 
 ### Examples
