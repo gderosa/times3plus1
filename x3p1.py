@@ -2,6 +2,7 @@
 
 import sys
 from os.path import exists
+import itertools
 import json
 
 import matplotlib.pyplot as plt
@@ -42,8 +43,6 @@ if exists('.cache.json'):
 print('Loading from cache', end='')
 for k, v in cache.items():
     print('.', end='')
-    k = int(k)
-    # print(repr(v))
     if v['max_y_init'] >= MAX_Y_INIT:
         if v['widest_y_init'] < MAX_Y_INIT and v['tallest_y_init'] < MAX_Y_INIT:
             widest_y_init       = v['widest_y_init']
@@ -51,16 +50,19 @@ for k, v in cache.items():
             use_cached_exact    = True
             break
     else:
-        if v['widest_y_init']   >  widest_y_init:
-            widest_y_init   = v[  'widest_y_init']
-        if v['tallest_y_init']  > tallest_y_init:
-            tallest_y_init  = v[ 'tallest_y_init']
-
-if use_cached_exact:
-    set_y_init          = sorted([widest_y_init, tallest_y_init])
-else:
-    set_y_init          = range(min(widest_y_init, tallest_y_init), MAX_Y_INIT)
+        if v['max_x'] > max_x:
+            widest_y_init   = v['widest_y_init']
+            max_x           = v['max_x']
+        if v['max_y'] > max_y:
+            tallest_y_init  = v['tallest_y_init']
+            max_y           = v['max_y']
+        if v['max_y_init'] > min_y_init:
+            min_y_init = v['max_y_init']
 print()
+
+set_y_init = [widest_y_init, tallest_y_init]
+if not use_cached_exact:
+    set_y_init  = itertools.chain(set_y_init, range(min_y_init, MAX_Y_INIT))
 
 for y_init in set_y_init:
     print(("Computing %.1f %%" % (100*y_init/MAX_Y_INIT)), end="\r")
@@ -80,11 +82,11 @@ for y_init in set_y_init:
         x = x + 1
         y = next(y)
 
-        if y >  max_y:
+        if y >= max_y:
             max_y = y
             is_tallest = True
 
-    if x > max_x:
+    if x >= max_x:
         max_x = x
         is_widest = True
 
@@ -100,11 +102,17 @@ for y_init in set_y_init:
         tallest_X       = X
         tallest_Y       = Y
 print()
+# print(tallest_X)  # DEBUG
+# print(tallest_Y)  # DEBUG
 
-cache[MAX_Y_INIT] = {'max_y_init': MAX_Y_INIT, 'widest_y_init': widest_y_init, 'tallest_y_init': tallest_y_init}
+cache[str(MAX_Y_INIT)] = {  # prevent duplicate keys, and json only support string keys...
+    'max_y_init': MAX_Y_INIT,
+    'widest_y_init': widest_y_init,     'max_x': max_x,
+    'tallest_y_init': tallest_y_init,   'max_y': max_y,
+}
 
 with open('.cache.json', 'w') as f:
-    json.dump(cache, f)
+    json.dump(cache, f, indent=2)
 
 
 plt.plot(tallest_X, tallest_Y, label=f"\"Tallest\" y_init={tallest_y_init}")
