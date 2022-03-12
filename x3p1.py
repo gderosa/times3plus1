@@ -39,7 +39,9 @@ if exists('.cache.json'):
     with open('.cache.json') as f:
         cache = json.load(f)
 
+print('Loading from cache', end='')
 for k, v in cache.items():
+    print('.', end='')
     k = int(k)
     # print(repr(v))
     if v['max_y_init'] >= MAX_Y_INIT:
@@ -58,10 +60,10 @@ if use_cached_exact:
     set_y_init          = sorted([widest_y_init, tallest_y_init])
 else:
     set_y_init          = range(min(widest_y_init, tallest_y_init), MAX_Y_INIT)
-
+print()
 
 for y_init in set_y_init:
-    print(("%.1f %%" % (100*y_init/MAX_Y_INIT)), end="\r")
+    print(("Computing %.1f %%" % (100*y_init/MAX_Y_INIT)), end="\r")
 
     is_widest   = False
     is_tallest  = False
@@ -97,7 +99,7 @@ for y_init in set_y_init:
         tallest_y_init  = y_init
         tallest_X       = X
         tallest_Y       = Y
-
+print()
 
 cache[MAX_Y_INIT] = {'max_y_init': MAX_Y_INIT, 'widest_y_init': widest_y_init, 'tallest_y_init': tallest_y_init}
 
