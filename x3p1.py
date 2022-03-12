@@ -12,7 +12,7 @@ def next(y):
         return y // 2
 
 
-MAX_Y_INIT      = 1e7
+MAX_Y_INIT      = 1e6
 
 max_x           = 0
 max_y           = 0
@@ -64,7 +64,7 @@ for y_init in range(1, int(MAX_Y_INIT)):
         tallest_X       = X
         tallest_Y       = Y
 
-plt.plot( widest_X,  widest_Y, label=f"\"Widest\" y_init={ widest_y_init}")
 plt.plot(tallest_X, tallest_Y, label=f"\"Tallest\" y_init={tallest_y_init}")
+plt.plot( widest_X,  widest_Y, label=f"\"Widest\" y_init={ widest_y_init}")
 plt.legend()
 plt.show()
