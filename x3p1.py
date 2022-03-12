@@ -118,4 +118,5 @@ with open('.cache.json', 'w') as f:
 plt.plot(tallest_X, tallest_Y, label=f"\"Tallest\" y_init={tallest_y_init}")
 plt.plot( widest_X,  widest_Y, label=f"\"Widest\" y_init={ widest_y_init}")
 plt.legend()
+# Optional: If you have an ATI Radeon: https://www.amd.com/en/support/kb/release-notes/rn-amdgpu-unified-linux-21-10
 plt.show()
