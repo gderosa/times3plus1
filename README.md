@@ -2,7 +2,7 @@
 
 See https://www.youtube.com/watch?v=094y1Z2wpJg.
 
-All about sequences having just these rules:
+This is about sequences having just these rules:
 * if value `y` is even, then divide it by 2
 * if it's odd, then turn it into `3*y + 1`
 
