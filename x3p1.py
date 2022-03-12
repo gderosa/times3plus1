@@ -115,7 +115,7 @@ with open('.cache.json', 'w') as f:
     json.dump(cache, f, indent=2)
 
 
-plt.title(f'"3y+1" problem. Max y_init (seed) = {MAX_Y_INIT}')
+plt.title(f'"3y+1" problem: tallest and widest. Max y_init={MAX_Y_INIT}')
 plt.plot(tallest_X, tallest_Y, label=f"max_y={max_y} @ y_init={tallest_y_init}")
 plt.plot( widest_X,  widest_Y, label=f"max_x={max_x} @ y_init={  widest_y_init}")
 plt.legend()
