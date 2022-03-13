@@ -127,10 +127,10 @@ else:
 plt.rcParams['font.family'] = 'monospace'
 fig, ax = plt.subplots()
 fig.set_tight_layout(True)
-ax.set_title(f'"3y+1" problem: tallest and widest. Max seed y_0={MAX_Y_INIT}')
+ax.set_title(f'"3y+1" problem. Max y_0 = {MAX_Y_INIT}')
 ax.set_yscale(yscale)
-ax.plot(tallest_X, tallest_Y, label=f'"Tall" @ y_0={tallest_y_init}\nheight={max_y}\nwidth ={max_x_tallest}')
-ax.plot( widest_X,  widest_Y, label=f'"Wide" @ y_0={ widest_y_init}\nheight={max_y_widest}\nwidth ={ max_x}')
+ax.plot(tallest_X, tallest_Y, label=f'"Tallest":\ny_0    = {tallest_y_init}\nheight = {max_y       }\nwidth  = {max_x_tallest}')
+ax.plot( widest_X,  widest_Y, label=f'"Widest": \ny_0    = { widest_y_init}\nheight = {max_y_widest}\nwidth  = {max_x        }')
 ax.set_xlabel('n')
 ax.set_ylabel('y_n')
 ax.legend()
