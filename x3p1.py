@@ -40,6 +40,10 @@ if exists('.cache.json'):
     with open('.cache.json') as f:
         cache = json.load(f)
 
+# "Sort" cache dict by 'max_y_init' key of each value; see .cache.sample.json for an idea of the structure
+cache = dict(sorted(cache.items(), key=lambda kv: kv[1]['max_y_init']))
+
+
 print('Loading from cache', end='')
 for k, v in cache.items():
     print('.', end='')
