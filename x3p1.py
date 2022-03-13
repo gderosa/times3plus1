@@ -106,8 +106,6 @@ for y_init in set_y_init:
         tallest_X       = X
         tallest_Y       = Y
 print()
-# print(tallest_X)  # DEBUG
-# print(tallest_Y)  # DEBUG
 
 cache[str(MAX_Y_INIT)] = {  # prevent duplicate keys, and json only support string keys...
     'max_y_init': MAX_Y_INIT,
