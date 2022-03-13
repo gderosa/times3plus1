@@ -117,17 +117,20 @@ with open('.cache.json', 'w') as f:
 # What we call `y_init`` throughout the code is labeled as `y_0` in the plot. Sorry :)
 
 max_y_widest = max(widest_Y)
+max_x_tallest = max(tallest_X)
+
 if max_y_widest / max_y > 1/12:
     yscale = 'linear'
 else:
     yscale = 'log'
 
+plt.rcParams['font.family'] = 'monospace'
 fig, ax = plt.subplots()
 fig.set_tight_layout(True)
 ax.set_title(f'"3y+1" problem: tallest and widest. Max seed y_0={MAX_Y_INIT}')
 ax.set_yscale(yscale)
-ax.plot(tallest_X, tallest_Y, label=f"\"Tallest\": max_y={max_y}; y_0={tallest_y_init}")
-ax.plot( widest_X,  widest_Y, label=f"\"Widest\": max_x={max_x}; y_0={ widest_y_init}")
+ax.plot(tallest_X, tallest_Y, label=f'"Tall" @ y_0={tallest_y_init}\nheight={max_y}\nwidth ={max_x_tallest}')
+ax.plot( widest_X,  widest_Y, label=f'"Wide" @ y_0={ widest_y_init}\nheight={max_y_widest}\nwidth ={ max_x}')
 ax.set_xlabel('n')
 ax.set_ylabel('y_n')
 ax.legend()
