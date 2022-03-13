@@ -69,7 +69,7 @@ if not use_cached_exact:
     set_y_init  = itertools.chain(set_y_init, range(min_y_init, MAX_Y_INIT))
 
 for y_init in set_y_init:
-    print(("Computing %.1f %%" % (100*y_init/MAX_Y_INIT)), end="\r")
+    print(("Computing %.2f %%" % (100*y_init/MAX_Y_INIT)), end="\r")
 
     is_widest   = False
     is_tallest  = False
