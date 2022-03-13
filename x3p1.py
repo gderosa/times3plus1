@@ -119,7 +119,7 @@ with open('.cache.json', 'w') as f:
 max_y_widest = max(widest_Y)
 max_x_tallest = max(tallest_X)
 
-if max_y_widest / max_y > 1/12:
+if max_y_widest / max_y > 0.1:
     yscale = 'linear'
 else:
     yscale = 'log'
