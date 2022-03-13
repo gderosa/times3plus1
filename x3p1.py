@@ -114,15 +114,16 @@ cache[str(MAX_Y_INIT)] = {  # prevent duplicate keys, and json only support stri
 with open('.cache.json', 'w') as f:
     json.dump(cache, f, indent=2)
 
+# What we call `y_init`` throughout the code is labeled as `y_0` in the plot. Sorry :)
 
-plt.title(f'"3y+1" problem: tallest and widest. Max y_init={MAX_Y_INIT}')
-plt.plot(tallest_X, tallest_Y, label=f"max_y={max_y} @ y_init={tallest_y_init}")
-plt.plot( widest_X,  widest_Y, label=f"max_x={max_x} @ y_init={ widest_y_init}")
-plt.legend()
-plt.tight_layout(rect=(-0.015, 0, 1, 1))
-manager = plt.get_current_fig_manager()
-if hasattr(manager, 'window'):
-    manager.window.showMaximized()
+fig, ax = plt.subplots()
+fig.set_tight_layout(True)
+ax.set_title(f'"3y+1" problem: tallest and widest. Max seed y_0={MAX_Y_INIT}')
+ax.plot(tallest_X, tallest_Y, label=f"max_y={max_y}; y_0={tallest_y_init}")
+ax.plot( widest_X,  widest_Y, label=f"max_x={max_x}; y_0={ widest_y_init}")
+ax.set_xlabel('n')
+ax.set_ylabel('y_n')
+ax.legend()
 plt.show()
 
 # Optional: If you have an ATI Radeon: https://www.amd.com/en/support/kb/release-notes/rn-amdgpu-unified-linux-21-10
