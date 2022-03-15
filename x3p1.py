@@ -60,8 +60,6 @@ if exists('.cache.json'):
     with open('.cache.json') as f:
         cache = json.load(f)
 
-# "Sort" cache dict by 'max_y_init' key of each value; see .cache.sample.json for an idea of the structure
-cache = dict(sorted(cache.items(), key=lambda kv: kv[1]['max_y_init']))
 
 print('Loading from cache', end='')
 for k, v in cache.items():
@@ -112,7 +110,8 @@ cache[str(MAX_Y_INIT)] = {  # prevent duplicate keys, and json only support stri
     'widest_y_init': widest_y_init,     'max_x': max_x,
     'tallest_y_init': tallest_y_init,   'max_y': max_y,
 }
-
+# "Sort" cache dict by 'max_y_init' key of each value; see .cache.sample.json for an idea of the structure
+cache = dict(sorted(cache.items(), key=lambda kv: kv[1]['max_y_init']))
 with open('.cache.json', 'w') as f:
     json.dump(cache, f, indent=2)
 
