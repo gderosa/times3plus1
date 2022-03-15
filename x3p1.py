@@ -91,13 +91,14 @@ for y_init in set_y_init:
 
     X, Y = sequence(y_init)
     _max_X = X[-1]
-    if _max_X > max_x:
+    if _max_X >= max_x:
         max_x           = _max_X
         widest_y_init   = y_init
         widest_X        = X
         widest_Y        = Y
     _max_Y = max(Y)
-    if _max_Y > max_y:
+    if _max_Y >= max_y:
+        max_y           = _max_Y
         tallest_y_init  = y_init
         tallest_X       = X
         tallest_Y       = Y
