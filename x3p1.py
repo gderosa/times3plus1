@@ -7,6 +7,7 @@ import json
 
 import matplotlib.pyplot as plt
 
+
 def odd(n):
     return n % 2
 
@@ -52,6 +53,7 @@ min_y_init          = 1
 max_y_init          = MAX_Y_INIT
 set_y_init          = range(min_y_init, max_y_init)
 
+
 use_cached_exact    = False
 cache               = {}
 if exists('.cache.json'):
@@ -60,7 +62,6 @@ if exists('.cache.json'):
 
 # "Sort" cache dict by 'max_y_init' key of each value; see .cache.sample.json for an idea of the structure
 cache = dict(sorted(cache.items(), key=lambda kv: kv[1]['max_y_init']))
-
 
 print('Loading from cache', end='')
 for k, v in cache.items():
@@ -86,6 +87,7 @@ set_y_init = [widest_y_init, tallest_y_init]
 if not use_cached_exact:
     set_y_init  = itertools.chain(set_y_init, range(min_y_init, MAX_Y_INIT))
 
+
 for y_init in set_y_init:
     print(("Computing %.2f %%" % (100*y_init/MAX_Y_INIT)), end="\r")
 
@@ -104,6 +106,7 @@ for y_init in set_y_init:
         tallest_Y       = Y
 print()
 
+
 cache[str(MAX_Y_INIT)] = {  # prevent duplicate keys, and json only support string keys...
     'max_y_init': MAX_Y_INIT,
     'widest_y_init': widest_y_init,     'max_x': max_x,
@@ -112,6 +115,7 @@ cache[str(MAX_Y_INIT)] = {  # prevent duplicate keys, and json only support stri
 
 with open('.cache.json', 'w') as f:
     json.dump(cache, f, indent=2)
+
 
 # What we call `y_init`` throughout the code is labeled as `y_0` in the plot. Sorry :)
 
@@ -142,3 +146,4 @@ ax.legend()
 plt.show()
 
 # Optional: If you have an ATI Radeon: https://www.amd.com/en/support/kb/release-notes/rn-amdgpu-unified-linux-21-10
+
