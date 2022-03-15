@@ -16,6 +16,24 @@ def next(y):
     else:
         return y // 2
 
+def sequence(y_init):
+    x = 0
+    y = y_init
+
+    X = []
+    Y = []
+
+    while y > 1:
+        X.append(x)
+        Y.append(y)
+        x = x + 1
+        y = next(y)
+
+    X.append(x)
+    Y.append(y)
+
+    return X, Y
+
 
 MAX_Y_INIT          = int(float(sys.argv[1]))  # Allow  e.g. 1e6
 
@@ -71,37 +89,15 @@ if not use_cached_exact:
 for y_init in set_y_init:
     print(("Computing %.2f %%" % (100*y_init/MAX_Y_INIT)), end="\r")
 
-    is_widest   = False
-    is_tallest  = False
-
-    x = 0
-    y = y_init
-
-    X = []
-    Y = []
-
-    while y > 1:
-        X.append(x)
-        Y.append(y)
-        x = x + 1
-        y = next(y)
-
-        if y >= max_y:
-            max_y = y
-            is_tallest = True
-
-    if x >= max_x:
-        max_x = x
-        is_widest = True
-
-    X.append(x)
-    Y.append(y)
-
-    if is_widest:
+    X, Y = sequence(y_init)
+    _max_X = X[-1]
+    if _max_X > max_x:
+        max_x           = _max_X
         widest_y_init   = y_init
         widest_X        = X
         widest_Y        = Y
-    if is_tallest:
+    _max_Y = max(Y)
+    if _max_Y > max_y:
         tallest_y_init  = y_init
         tallest_X       = X
         tallest_Y       = Y
@@ -131,8 +127,14 @@ fig, ax = plt.subplots()
 fig.set_tight_layout(True)
 ax.set_title(f'"3y+1" problem. Max y_0 = {MAX_Y_INIT}')
 ax.set_yscale(yscale)
-ax.plot(tallest_X, tallest_Y, label=f'"Tallest":\ny_0    = {tallest_y_init}\ny_max  = {max_y       }\nx_max  = {max_x_tallest}')
-ax.plot( widest_X,  widest_Y, label=f'"Widest": \ny_0    = { widest_y_init}\ny_max  = {max_y_widest}\nx_max  = {max_x        }')
+ax.plot(
+    tallest_X, tallest_Y, linewidth=0.85,
+    label=f'"Tallest":\ny_0    = {tallest_y_init}\ny_max  = {max_y       }\nx_max  = {max_x_tallest}'
+)
+ax.plot(
+    widest_X,  widest_Y, linewidth=0.85,
+    label=f'"Widest": \ny_0    = { widest_y_init}\ny_max  = {max_y_widest}\nx_max  = {max_x        }'
+)
 ax.set_xlabel('n')
 ax.set_ylabel('y_n')
 ax.legend()
