@@ -2,6 +2,7 @@
 
 # import json
 
+from fileinput import filename
 import matplotlib.pyplot as plt
 
 
@@ -36,6 +37,9 @@ def plot(tallest, widest):
     tallest_y_init  = tallest[0]
     widest_y_init   = widest[0]
 
+    y_init_max      = max(tallest_y_init, widest_y_init)
+    filename        = 'plots/%012d.png' % y_init_max
+
     if max_y_widest / max_y > 0.1:
         yscale = 'linear'
     else:
@@ -57,7 +61,9 @@ def plot(tallest, widest):
     ax.set_xlabel('n')
     ax.set_ylabel('y_n')
     ax.legend()
-    plt.show()
+    print('Writing: %s' % filename)
+    plt.savefig(filename, dpi=600)
+    plt.close()
 
     # Optional: If you have an ATI Radeon: https://www.amd.com/en/support/kb/release-notes/rn-amdgpu-unified-linux-21-10
 
