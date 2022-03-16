@@ -79,7 +79,7 @@ def save_data(x_MAX, y_MAX, y_0):
         'y_MAX': y_MAX,
         'y_0': y_0
     }
-    with open('.cache.progr.json', 'w') as f:
+    with open(CACHEFILE, 'w') as f:
         json.dump(data, f)
 
 def main():
