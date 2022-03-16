@@ -95,7 +95,7 @@ def main():
             x_MAX = x_max
             widest = Y
             do_plot = True
-        if do_plot and tallest[0] != widest[0]:
+        if do_plot:
             plot(tallest, widest)
         y_0 += 1
 
