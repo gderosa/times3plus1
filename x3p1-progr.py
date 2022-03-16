@@ -2,6 +2,7 @@
 
 
 import sys
+import json
 
 import matplotlib.pyplot as plt
 
@@ -73,6 +74,16 @@ def plot(tallest, widest):
 
     # Optional: If you have an ATI Radeon: https://www.amd.com/en/support/kb/release-notes/rn-amdgpu-unified-linux-21-10
 
+def save_data(x_MAX, y_MAX, y_0):
+    data = {
+        'x_MAX': x_MAX,
+        'y_MAX': y_MAX,
+        'y_0': y_0
+    }
+    with open('.cache.progr.json', 'w') as f:
+        json.dump(data, f)
+
+
 def main():
     tallest = [0]
     widest  = [0]
@@ -83,19 +94,20 @@ def main():
     x_MAX   = 0
     y_MAX   = 0
     while True:
-        do_plot = False
+        found = False
         Y = sequence(y_0)
         y_max = max(Y)
         x_max = len(Y)
         if y_max > y_MAX:
             y_MAX = y_max
             tallest = Y
-            do_plot = True
+            found = True
         if x_max > x_MAX:
             x_MAX = x_max
             widest = Y
-            do_plot = True
-        if do_plot:
+            found = True
+        if found:
+            save_data(x_MAX, y_MAX, y_0)
             plot(tallest, widest)
         y_0 += 1
 
