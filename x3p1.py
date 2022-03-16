@@ -11,6 +11,12 @@ import matplotlib.pyplot as plt
 def odd(n):
     return n % 2
 
+def range_odd(from_, to_):
+    if odd(from_):
+        return range(from_, to_, 2)
+    else:
+        return range(from_ + 1, to_, 2)
+
 def next(y):
     if odd(y):
         return y*3 + 1
@@ -51,7 +57,7 @@ tallest_Y           = []
 
 min_y_init          = 1
 max_y_init          = MAX_Y_INIT
-set_y_init          = range(min_y_init, max_y_init)
+set_y_init          = range_odd(min_y_init, max_y_init)
 
 
 use_cached_exact    = False
@@ -83,7 +89,7 @@ print()
 
 set_y_init = [widest_y_init, tallest_y_init]
 if not use_cached_exact:
-    set_y_init  = itertools.chain(set_y_init, range(min_y_init, MAX_Y_INIT))
+    set_y_init  = itertools.chain(set_y_init, range_odd(min_y_init, MAX_Y_INIT))
 
 
 for y_init in set_y_init:
