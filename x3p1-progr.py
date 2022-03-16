@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 plt.rcParams['font.family']     = 'monospace'
 plt.rcParams['font.size']       = 6.0
-plt.rcParams['savefig.dpi']     = 300
+#plt.rcParams['savefig.dpi']     = 300
 plt.rcParams['lines.linewidth'] = 2/3
 
 
@@ -44,12 +44,13 @@ def plot(tallest, widest):
     widest_y_init   = widest[0]
 
     y_init_max      = max(tallest_y_init, widest_y_init)
-    filename        = 'plots/%012d.png' % y_init_max
+    filename        = 'plots/%012d.svg' % y_init_max
 
-    if max_y_widest / max_y > 0.1:
-        yscale = 'linear'
-    else:
-        yscale = 'log'
+    # if max_y_widest / max_y > 0.1:
+    #     yscale = 'linear'
+    # else:
+    #     yscale = 'log'
+    yscale = 'log'
 
     fig, ax = plt.subplots()
     fig.set_tight_layout(True)
@@ -82,17 +83,19 @@ def main():
     x_MAX   = 0
     y_MAX   = 0
     while True:
-        # print(y_0, end='\r')
+        do_plot = False
         Y = sequence(y_0)
         y_max = max(Y)
         x_max = len(Y)
         if y_max > y_MAX:
             y_MAX = y_max
             tallest = Y
-            plot(tallest, widest)
-        elif x_max > x_MAX:
+            do_plot = True
+        if x_max > x_MAX:
             x_MAX = x_max
             widest = Y
+            do_plot = True
+        if do_plot and tallest[0] != widest[0]:
             plot(tallest, widest)
         y_0 += 1
 
