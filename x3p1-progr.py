@@ -3,6 +3,7 @@
 
 import sys
 from os.path import exists
+from time import sleep
 import json
 
 import matplotlib.pyplot as plt
@@ -113,8 +114,8 @@ def main():
             widest = Y
             found = True
         if found:
-            save_data(x_MAX, y_MAX, y_0)
             plot(tallest, widest)
+            save_data(x_MAX, y_MAX, y_0)
         y_0 += 1
 
 
