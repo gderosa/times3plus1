@@ -2,14 +2,16 @@
 
 
 import sys
+from os.path import exists
 import json
 
 import matplotlib.pyplot as plt
 
 
+CACHEFILE                       = '.cache.progr.json'
+
 plt.rcParams['font.family']     = 'monospace'
 plt.rcParams['font.size']       = 6.0
-#plt.rcParams['savefig.dpi']     = 300
 plt.rcParams['lines.linewidth'] = 2/3
 
 
@@ -47,10 +49,6 @@ def plot(tallest, widest):
     y_init_max      = max(tallest_y_init, widest_y_init)
     filename        = 'plots/%012d.svg' % y_init_max
 
-    # if max_y_widest / max_y > 0.1:
-    #     yscale = 'linear'
-    # else:
-    #     yscale = 'log'
     yscale = 'log'
 
     fig, ax = plt.subplots()
@@ -93,6 +91,14 @@ def main():
         y_0 = 1
     x_MAX   = 0
     y_MAX   = 0
+
+    if exists(CACHEFILE):
+        with open(CACHEFILE) as f:
+            cache = json.load(f)
+        x_MAX   =           cache['x_MAX'   ]
+        y_MAX   =           cache['y_MAX'   ]
+        y_0     = max(y_0,  cache['y_0'     ])
+
     while True:
         found = False
         Y = sequence(y_0)
@@ -112,5 +118,8 @@ def main():
         y_0 += 1
 
 
-main()
+try:
+    main()
+except KeyboardInterrupt:
+    pass
 
