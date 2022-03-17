@@ -102,8 +102,8 @@ def main():
         y_0 = min(widest[0], tallest[0])
 
     while True:
-        print('%.1f M' % (y_0/1e6), end='\r')
-
+        if not y_0 % 1e6:
+            print('%.1f M' % (y_0/1e6), end='\r')
         found = False
         Y = sequence(y_0)
         y_max = max(Y)
