@@ -73,11 +73,12 @@ def plot(tallest, widest):
 
     # Optional: If you have an ATI Radeon: https://www.amd.com/en/support/kb/release-notes/rn-amdgpu-unified-linux-21-10
 
-def save_data(x_MAX, y_MAX, y_0):
+def save_data(x_MAX, y_MAX, widest_0, tallest_0):
     data = {
-        'x_MAX': x_MAX,
-        'y_MAX': y_MAX,
-        'y_0': y_0
+        'x_MAX':        x_MAX,
+        'y_MAX':        y_MAX,
+        'widest_0':     widest_0,
+        'tallest_0':    tallest_0
     }
     with open(CACHEFILE, 'w') as f:
         json.dump(data, f)
@@ -85,19 +86,20 @@ def save_data(x_MAX, y_MAX, y_0):
 def main():
     tallest = [0]
     widest  = [0]
-    if len(sys.argv) > 1:
-        y_0 = int(float(sys.argv[1]))
-    else:
-        y_0 = 1
+    y_0 = 1
     x_MAX   = 0
     y_MAX   = 0
 
     if exists(CACHEFILE):
         with open(CACHEFILE) as f:
             cache = json.load(f)
-        x_MAX   =           cache['x_MAX'   ]
-        y_MAX   =           cache['y_MAX'   ]
-        y_0     = max(y_0,  cache['y_0'     ])
+
+        x_MAX = cache['x_MAX']
+        y_MAX = cache['y_MAX']
+
+        widest  = sequence(cache['widest_0' ])
+        tallest = sequence(cache['tallest_0'])
+        y_0 = min(widest[0], tallest[0])
 
     while True:
         found = False
@@ -114,7 +116,7 @@ def main():
             found = True
         if found:
             plot(tallest, widest)
-            save_data(x_MAX, y_MAX, y_0)
+            save_data(x_MAX, y_MAX, widest[0], tallest[0])
         y_0 += 1
 
 
