@@ -1,0 +1,414 @@
+[
+  {
+    "tallest_0": 1,
+    "widest_0": 1
+  },
+  {
+    "tallest_0": 2,
+    "widest_0": 2
+  },
+  {
+    "tallest_0": 3,
+    "widest_0": 3
+  },
+  {
+    "tallest_0": 3,
+    "widest_0": 6
+  },
+  {
+    "tallest_0": 7,
+    "widest_0": 7
+  },
+  {
+    "tallest_0": 7,
+    "widest_0": 9
+  },
+  {
+    "tallest_0": 15,
+    "widest_0": 9
+  },
+  {
+    "tallest_0": 15,
+    "widest_0": 18
+  },
+  {
+    "tallest_0": 15,
+    "widest_0": 25
+  },
+  {
+    "tallest_0": 27,
+    "widest_0": 27
+  },
+  {
+    "tallest_0": 27,
+    "widest_0": 54
+  },
+  {
+    "tallest_0": 27,
+    "widest_0": 73
+  },
+  {
+    "tallest_0": 27,
+    "widest_0": 97
+  },
+  {
+    "tallest_0": 27,
+    "widest_0": 129
+  },
+  {
+    "tallest_0": 27,
+    "widest_0": 171
+  },
+  {
+    "tallest_0": 27,
+    "widest_0": 231
+  },
+  {
+    "tallest_0": 255,
+    "widest_0": 231
+  },
+  {
+    "tallest_0": 255,
+    "widest_0": 313
+  },
+  {
+    "tallest_0": 255,
+    "widest_0": 327
+  },
+  {
+    "tallest_0": 447,
+    "widest_0": 327
+  },
+  {
+    "tallest_0": 639,
+    "widest_0": 327
+  },
+  {
+    "tallest_0": 639,
+    "widest_0": 649
+  },
+  {
+    "tallest_0": 703,
+    "widest_0": 703
+  },
+  {
+    "tallest_0": 703,
+    "widest_0": 871
+  },
+  {
+    "tallest_0": 703,
+    "widest_0": 1161
+  },
+  {
+    "tallest_0": 1819,
+    "widest_0": 1161
+  },
+  {
+    "tallest_0": 1819,
+    "widest_0": 2223
+  },
+  {
+    "tallest_0": 1819,
+    "widest_0": 2463
+  },
+  {
+    "tallest_0": 1819,
+    "widest_0": 2919
+  },
+  {
+    "tallest_0": 1819,
+    "widest_0": 3711
+  },
+  {
+    "tallest_0": 4255,
+    "widest_0": 3711
+  },
+  {
+    "tallest_0": 4591,
+    "widest_0": 3711
+  },
+  {
+    "tallest_0": 4591,
+    "widest_0": 6171
+  },
+  {
+    "tallest_0": 9663,
+    "widest_0": 6171
+  },
+  {
+    "tallest_0": 9663,
+    "widest_0": 10971
+  },
+  {
+    "tallest_0": 9663,
+    "widest_0": 13255
+  },
+  {
+    "tallest_0": 9663,
+    "widest_0": 17647
+  },
+  {
+    "tallest_0": 20895,
+    "widest_0": 17647
+  },
+  {
+    "tallest_0": 20895,
+    "widest_0": 23529
+  },
+  {
+    "tallest_0": 26623,
+    "widest_0": 26623
+  },
+  {
+    "tallest_0": 31911,
+    "widest_0": 26623
+  },
+  {
+    "tallest_0": 31911,
+    "widest_0": 34239
+  },
+  {
+    "tallest_0": 31911,
+    "widest_0": 35655
+  },
+  {
+    "tallest_0": 31911,
+    "widest_0": 52527
+  },
+  {
+    "tallest_0": 60975,
+    "widest_0": 52527
+  },
+  {
+    "tallest_0": 60975,
+    "widest_0": 77031
+  },
+  {
+    "tallest_0": 77671,
+    "widest_0": 77031
+  },
+  {
+    "tallest_0": 77671,
+    "widest_0": 106239
+  },
+  {
+    "tallest_0": 113383,
+    "widest_0": 106239
+  },
+  {
+    "tallest_0": 138367,
+    "widest_0": 106239
+  },
+  {
+    "tallest_0": 138367,
+    "widest_0": 142587
+  },
+  {
+    "tallest_0": 138367,
+    "widest_0": 156159
+  },
+  {
+    "tallest_0": 159487,
+    "widest_0": 156159
+  },
+  {
+    "tallest_0": 159487,
+    "widest_0": 216367
+  },
+  {
+    "tallest_0": 159487,
+    "widest_0": 230631
+  },
+  {
+    "tallest_0": 270271,
+    "widest_0": 230631
+  },
+  {
+    "tallest_0": 270271,
+    "widest_0": 410011
+  },
+  {
+    "tallest_0": 270271,
+    "widest_0": 511935
+  },
+  {
+    "tallest_0": 270271,
+    "widest_0": 626331
+  },
+  {
+    "tallest_0": 665215,
+    "widest_0": 626331
+  },
+  {
+    "tallest_0": 704511,
+    "widest_0": 626331
+  },
+  {
+    "tallest_0": 704511,
+    "widest_0": 837799
+  },
+  {
+    "tallest_0": 1042431,
+    "widest_0": 837799
+  },
+  {
+    "tallest_0": 1042431,
+    "widest_0": 1117065
+  },
+  {
+    "tallest_0": 1212415,
+    "widest_0": 1117065
+  },
+  {
+    "tallest_0": 1441407,
+    "widest_0": 1117065
+  },
+  {
+    "tallest_0": 1441407,
+    "widest_0": 1501353
+  },
+  {
+    "tallest_0": 1441407,
+    "widest_0": 1723519
+  },
+  {
+    "tallest_0": 1875711,
+    "widest_0": 1723519
+  },
+  {
+    "tallest_0": 1988859,
+    "widest_0": 1723519
+  },
+  {
+    "tallest_0": 1988859,
+    "widest_0": 2298025
+  },
+  {
+    "tallest_0": 2643183,
+    "widest_0": 2298025
+  },
+  {
+    "tallest_0": 2684647,
+    "widest_0": 2298025
+  },
+  {
+    "tallest_0": 3041127,
+    "widest_0": 2298025
+  },
+  {
+    "tallest_0": 3041127,
+    "widest_0": 3064033
+  },
+  {
+    "tallest_0": 3041127,
+    "widest_0": 3542887
+  },
+  {
+    "tallest_0": 3041127,
+    "widest_0": 3732423
+  },
+  {
+    "tallest_0": 3873535,
+    "widest_0": 3732423
+  },
+  {
+    "tallest_0": 4637979,
+    "widest_0": 3732423
+  },
+  {
+    "tallest_0": 4637979,
+    "widest_0": 5649499
+  },
+  {
+    "tallest_0": 5656191,
+    "widest_0": 5649499
+  },
+  {
+    "tallest_0": 6416623,
+    "widest_0": 5649499
+  },
+  {
+    "tallest_0": 6631675,
+    "widest_0": 5649499
+  },
+  {
+    "tallest_0": 6631675,
+    "widest_0": 6649279
+  },
+  {
+    "tallest_0": 6631675,
+    "widest_0": 8400511
+  },
+  {
+    "tallest_0": 6631675,
+    "widest_0": 11200681
+  },
+  {
+    "tallest_0": 6631675,
+    "widest_0": 14934241
+  },
+  {
+    "tallest_0": 6631675,
+    "widest_0": 15733191
+  },
+  {
+    "tallest_0": 19638399,
+    "widest_0": 15733191
+  },
+  {
+    "tallest_0": 19638399,
+    "widest_0": 31466382
+  },
+  {
+    "tallest_0": 19638399,
+    "widest_0": 36791535
+  },
+  {
+    "tallest_0": 38595583,
+    "widest_0": 36791535
+  },
+  {
+    "tallest_0": 38595583,
+    "widest_0": 63728127
+  },
+  {
+    "tallest_0": 80049391,
+    "widest_0": 63728127
+  },
+  {
+    "tallest_0": 120080895,
+    "widest_0": 63728127
+  },
+  {
+    "tallest_0": 120080895,
+    "widest_0": 127456254
+  },
+  {
+    "tallest_0": 120080895,
+    "widest_0": 169941673
+  },
+  {
+    "tallest_0": 210964383,
+    "widest_0": 169941673
+  },
+  {
+    "tallest_0": 210964383,
+    "widest_0": 226588897
+  },
+  {
+    "tallest_0": 210964383,
+    "widest_0": 268549803
+  },
+  {
+    "tallest_0": 319804831,
+    "widest_0": 268549803
+  },
+  {
+    "tallest_0": 319804831,
+    "widest_0": 537099606
+  },
+  {
+    "tallest_0": 319804831,
+    "widest_0": 670617279
+  }
+]
