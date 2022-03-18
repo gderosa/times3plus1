@@ -1,9 +1,8 @@
 # https://www.youtube.com/watch?v=094y1Z2wpJg
 
 
-from sys import argv
-from os.path import exists
-import json
+from glob import glob
+import re
 
 import matplotlib.pyplot as plt
 
@@ -13,7 +12,7 @@ CACHEFILE                       = '.cache.progr.json'
 plt.rcParams['font.family']     = 'monospace'
 plt.rcParams['font.size']       = 6.0
 plt.rcParams['lines.linewidth'] = 2/3
-
+plt.rcParams['figure.dpi']      = 300
 
 def odd(n):
     return n % 2
@@ -47,7 +46,8 @@ def plot(tallest, widest):
     widest_y_init   = widest[0]
 
     y_init_max      = max(tallest_y_init, widest_y_init)
-    filename        = 'plots/%012d.svg' % y_init_max
+    jpgname         = 'plots/jpg/%012d.jpg' % y_init_max
+    pngname         = 'plots/png/%012d.png' % y_init_max
 
     yscale = 'log'
 
@@ -66,46 +66,32 @@ def plot(tallest, widest):
     ax.set_xlabel('n')
     ax.set_ylabel('y_n')
     ax.legend()
-    print('Writing: %s' % filename)
-    plt.savefig(filename)
+
+    plt.savefig(jpgname)
+    print('Writing: %s' % jpgname)
+
+    plt.savefig(pngname)
+    print('Writing: %s' % pngname)
+
     plt.close()
+    print()
 
     # Optional: If you have an ATI Radeon: https://www.amd.com/en/support/kb/release-notes/rn-amdgpu-unified-linux-21-10
 
-def save_data(x_MAX, y_MAX, widest_0, tallest_0):
-    data = {
-        'x_MAX':        x_MAX,
-        'y_MAX':        y_MAX,
-        'widest_0':     widest_0,
-        'tallest_0':    tallest_0
-    }
-    with open(CACHEFILE, 'w') as f:
-        json.dump(data, f)
 
 def main():
     tallest = [0]
     widest  = [0]
     y_0 = 1
-    x_MAX   = 0
-    y_MAX   = 0
+    x_MAX = 0
+    y_MAX = 0
 
-    if exists(CACHEFILE):
-        with open(CACHEFILE) as f:
-            cache = json.load(f)
+    for filepath in sorted(list(glob('plots/*.svg'))):
+        r = re.compile(r'(\d+)\.svg')
+        m = r.search(filepath)
+        y_0 = int(m[1])
+        print(y_0)
 
-        x_MAX = cache['x_MAX']
-        y_MAX = cache['y_MAX']
-
-        widest  = sequence(cache['widest_0' ])
-        tallest = sequence(cache['tallest_0'])
-        y_0 = min(widest[0], tallest[0])
-
-    if len(argv) > 1:
-        y_0 = int(float(argv[1]))
-
-    while True:
-        if not y_0 % 1e6:
-            print('%.1f M' % (y_0/1e6), end='\r')
         found = False
         Y = sequence(y_0)
         y_max = max(Y)
@@ -120,7 +106,6 @@ def main():
             found = True
         if found:
             plot(tallest, widest)
-            save_data(x_MAX, y_MAX, widest[0], tallest[0])
         y_0 += 1
 
 
