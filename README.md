@@ -8,7 +8,10 @@ This is about sequences having just these rules:
 * extra rule: if it's equal to 1, interrupt it (it would otherwise get into a 4-2-1 endless loop
 
 and keeping track of the "tallest" and "widest" sequence obtained so far (progressively increasing the initial value).
-Plot images of such sequences go into `plots/*/`.
+Plot images of such sequences go into `plots/*/`. For example:
+
+![000000156159](https://user-images.githubusercontent.com/55979/159082829-8136668d-bf05-4b0d-87b5-ab5a302413c1.svg)
+
 
 ## Requirements
 
