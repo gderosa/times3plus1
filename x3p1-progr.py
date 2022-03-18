@@ -1,18 +1,20 @@
 # https://www.youtube.com/watch?v=094y1Z2wpJg
 
 
-from sys import argv
 from os.path import exists
 import json
 
 import matplotlib.pyplot as plt
 
 
-CACHEFILE                       = '.cache.progr.json'
+CACHEFILE                       = '.cache.json'
 
 plt.rcParams['font.family']     = 'monospace'
-plt.rcParams['font.size']       = 6.0
-plt.rcParams['lines.linewidth'] = 2/3
+plt.rcParams['font.size']       = 14.0
+plt.rcParams['lines.linewidth'] = 1.5
+# "Full HD" 1920x1080
+plt.rcParams['figure.figsize']  = [19.2, 10.8]
+plt.rcParams['savefig.dpi']     = 100
 
 
 def odd(n):
@@ -47,7 +49,12 @@ def plot(tallest, widest):
     widest_y_init   = widest[0]
 
     y_init_max      = max(tallest_y_init, widest_y_init)
-    filename        = 'plots/%012d.svg' % y_init_max
+
+    figfiles        = [
+        'plots/svg/%012d.svg' % y_init_max,
+        'plots/png/%012d.png' % y_init_max,
+        'plots/jpg/%012d.jpg' % y_init_max
+    ]
 
     yscale = 'log'
 
@@ -66,21 +73,21 @@ def plot(tallest, widest):
     ax.set_xlabel('n')
     ax.set_ylabel('y_n')
     ax.legend()
-    print('Writing: %s' % filename)
-    plt.savefig(filename)
+    for filename in figfiles:
+        print('Writing: %s' % filename)
+        plt.savefig(filename)
     plt.close()
+    print()
 
-    # Optional: If you have an ATI Radeon: https://www.amd.com/en/support/kb/release-notes/rn-amdgpu-unified-linux-21-10
-
-def save_data(x_MAX, y_MAX, widest_0, tallest_0):
-    data = {
-        'x_MAX':        x_MAX,
-        'y_MAX':        y_MAX,
-        'widest_0':     widest_0,
-        'tallest_0':    tallest_0
-    }
-    with open(CACHEFILE, 'w') as f:
-        json.dump(data, f)
+# def save_data(x_MAX, y_MAX, widest_0, tallest_0):
+#     data = {
+#         'x_MAX':        x_MAX,
+#         'y_MAX':        y_MAX,
+#         'widest_0':     widest_0,
+#         'tallest_0':    tallest_0
+#     }
+#     with open(CACHEFILE, 'w') as f:
+#         json.dump(data, f)
 
 def main():
     tallest = [0]
@@ -92,16 +99,13 @@ def main():
     if exists(CACHEFILE):
         with open(CACHEFILE) as f:
             cache = json.load(f)
-
-        x_MAX = cache['x_MAX']
-        y_MAX = cache['y_MAX']
-
-        widest  = sequence(cache['widest_0' ])
-        tallest = sequence(cache['tallest_0'])
-        y_0 = min(widest[0], tallest[0])
-
-    if len(argv) > 1:
-        y_0 = int(float(argv[1]))
+        for cache_item in cache:
+            tallest_0   = cache_item['tallest_0']
+            widest_0    = cache_item[ 'widest_0']
+            tallest     = sequence(   tallest_0)
+            widest      = sequence(    widest_0)
+            plot(tallest, widest)
+        y_0 = max(tallest_0, widest_0)
 
     while True:
         if not y_0 % 1e6:
@@ -120,7 +124,6 @@ def main():
             found = True
         if found:
             plot(tallest, widest)
-            save_data(x_MAX, y_MAX, widest[0], tallest[0])
         y_0 += 1
 
 
