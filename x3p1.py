@@ -97,19 +97,18 @@ def main():
     if exists(CACHEFILE):
         with open(CACHEFILE) as f:
             cache = json.load(f)
-        print('Loading initial data from cache:', end='\n\n')
         for cache_item in cache:
             tallest_0   = cache_item['tallest_0']
             widest_0    = cache_item[ 'widest_0']
-            tallest     = sequence(   tallest_0)
-            widest      = sequence(    widest_0)
+            print('Using cached initial values @ y_0 = %d' % max(tallest_0, widest_0))
+            tallest = sequence(tallest_0)
+            widest  = sequence( widest_0)
             plot(tallest, widest)
         y_0 = max(tallest_0, widest_0)
 
-    print('Computing:', end='\n\n')
     while True:
         if not y_0 % 1e5:
-            print(' %.1f M' % (y_0/1e6), end='\r')
+            print('Computing @ y_0 =~ %.1fM' % (y_0/1e6))
         found = False
         Y = sequence(y_0)
         y_max = max(Y)
