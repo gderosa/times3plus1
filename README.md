@@ -14,7 +14,7 @@ This is about sequences having just these rules:
 ## Usage
 
 ```
-python x3p1.py <max_initial_value>
+python x3p1.py
 ```
 
 ## A video was made out of plot pictures
