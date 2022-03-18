@@ -10,9 +10,12 @@ import matplotlib.pyplot as plt
 CACHEFILE                       = '.cache.progr.json'
 
 plt.rcParams['font.family']     = 'monospace'
-plt.rcParams['font.size']       = 6.0
-plt.rcParams['lines.linewidth'] = 2/3
-plt.rcParams['figure.dpi']      = 300
+plt.rcParams['font.size']       = 14.0
+plt.rcParams['lines.linewidth'] = 1.5
+# "Full HD"
+plt.rcParams['figure.figsize']  = [19.2, 10.8]
+plt.rcParams['savefig.dpi']     = 100
+
 
 def odd(n):
     return n % 2
