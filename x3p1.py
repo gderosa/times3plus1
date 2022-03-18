@@ -7,8 +7,13 @@ import json
 import matplotlib.pyplot as plt
 
 
-CACHEFILE = '.cache.json'
-
+CACHE_FILE = '.cache.json'
+CACHE_INIT = {
+    'current': {
+        'y_0': 1
+    },
+    'results': []
+}
 
 def odd(n):
     return n % 2
@@ -75,16 +80,21 @@ def plot(tallest, widest):
     ax.set_ylabel('y_n')
     ax.legend()
     for filename in figfiles:
-        if exists(filename):
-            print('Found:   %s' % filename)
-        else:
+        if not exists(filename):
             print('Writing: %s' % filename)
             plt.savefig(filename)
     plt.close()
-    print()
+
+def save(cache):
+    with open(CACHE_FILE, 'w') as f:
+        json.dump(cache, f, indent=2)
+
+def load(cache_file=CACHE_FILE):
+    with open(cache_file) as f:
+        return json.load(f)
 
 def main():
-    cache   = [ ]
+    cache = CACHE_INIT
 
     tallest = [0]
     widest  = [0]
@@ -94,47 +104,49 @@ def main():
 
     set_plotting(plt)
 
-    if exists(CACHEFILE):
-        with open(CACHEFILE) as f:
-            cache = json.load(f)
-        for cache_item in cache:
-            tallest_0   = cache_item['tallest_0']
-            widest_0    = cache_item[ 'widest_0']
-            print('Using cached initial values @ y_0 = %d' % max(tallest_0, widest_0))
-            tallest = sequence(tallest_0)
-            widest  = sequence( widest_0)
-            plot(tallest, widest)
-        y_0 = max(tallest_0, widest_0)
+    if exists(CACHE_FILE):
+        cache = load(CACHE_FILE)
+        for cache_item in cache['results']:
+            if 'tallest_0' in cache_item and 'widest_0' in cache_item:
+                tallest_0   = cache_item['tallest_0']
+                widest_0    = cache_item[ 'widest_0']
+                print('Using cached initial values @ y_0 = %d' % max(tallest_0, widest_0))
+                tallest = sequence(tallest_0)
+                widest  = sequence( widest_0)
+                y_MAX   = max(max(tallest), y_MAX)
+                x_MAX   = max(len(widest), x_MAX)
+                plot(tallest, widest)
+            y_0 = max(tallest_0, widest_0, cache['current']['y_0'])
 
-    while True:
-        if not y_0 % 1e5:
-            print('Computing @ y_0 =~ %.1fM' % (y_0/1e6))
-        found = False
-        Y = sequence(y_0)
-        y_max = max(Y)
-        x_max = len(Y)
-        if y_max > y_MAX:
-            y_MAX = y_max
-            tallest = Y
-            found = True
-        if x_max > x_MAX:
-            x_MAX = x_max
-            widest = Y
-            found = True
-        if found:
-            plot(tallest, widest)
-            cache.append({
-                'tallest_0' : tallest[  0],
-                'widest_0'  : widest[   0]
-            })
-            with open(CACHEFILE, 'w') as f:
-                json.dump(cache, f, indent=2)
-        y_0 += 1
+    try:
+        while True:
+            if not y_0 % 1e5:
+                print('Computing @ y_0 =~ %.1fM' % (y_0/1e6))
+            found = False
+            Y = sequence(y_0)
+            y_max = max(Y)
+            x_max = len(Y)
+            if y_max > y_MAX:
+                y_MAX = y_max
+                tallest = Y
+                found = True
+            if x_max > x_MAX:
+                x_MAX = x_max
+                widest = Y
+                found = True
+            if found:
+                plot(tallest, widest)
+                cache['results'].append({
+                    'tallest_0': tallest[0],
+                    'widest_0': widest[0]
+                })
+                save(cache)
+            cache['current']['y_0'] = y_0
+            y_0 += 1
+    except KeyboardInterrupt:
+        save(cache)
 
 
 if __name__ == '__main__':
-    try:
-        main()
-    except KeyboardInterrupt:
-        pass
+    main()
 
