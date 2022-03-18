@@ -74,22 +74,17 @@ def plot(tallest, widest):
     ax.set_ylabel('y_n')
     ax.legend()
     for filename in figfiles:
-        print('Writing: %s' % filename)
-        plt.savefig(filename)
+        if exists(filename):
+            print('Found:   %s' % filename)
+        else:
+            print('Writing: %s' % filename)
+            plt.savefig(filename)
     plt.close()
     print()
 
-# def save_data(x_MAX, y_MAX, widest_0, tallest_0):
-#     data = {
-#         'x_MAX':        x_MAX,
-#         'y_MAX':        y_MAX,
-#         'widest_0':     widest_0,
-#         'tallest_0':    tallest_0
-#     }
-#     with open(CACHEFILE, 'w') as f:
-#         json.dump(data, f)
-
 def main():
+    cache   = [ ]
+
     tallest = [0]
     widest  = [0]
     y_0 = 1
@@ -99,6 +94,7 @@ def main():
     if exists(CACHEFILE):
         with open(CACHEFILE) as f:
             cache = json.load(f)
+        print('Loading initial data from cache:', end='\n\n')
         for cache_item in cache:
             tallest_0   = cache_item['tallest_0']
             widest_0    = cache_item[ 'widest_0']
@@ -107,9 +103,10 @@ def main():
             plot(tallest, widest)
         y_0 = max(tallest_0, widest_0)
 
+    print('Computing:', end='\n\n')
     while True:
-        if not y_0 % 1e6:
-            print('%.1f M' % (y_0/1e6), end='\r')
+        if not y_0 % 1e5:
+            print(' %.1f M' % (y_0/1e6), end='\r')
         found = False
         Y = sequence(y_0)
         y_max = max(Y)
@@ -124,6 +121,12 @@ def main():
             found = True
         if found:
             plot(tallest, widest)
+            cache.append({
+                'tallest_0' : tallest[  0],
+                'widest_0'  : widest[   0]
+            })
+            with open(CACHEFILE, 'w') as f:
+                json.dump(cache, f, indent=2)
         y_0 += 1
 
 
