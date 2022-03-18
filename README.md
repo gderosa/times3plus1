@@ -4,7 +4,11 @@ See https://www.youtube.com/watch?v=094y1Z2wpJg.
 
 This is about sequences having just these rules:
 * if value `y` is even, then divide it by 2
-* if it's odd, then turn it into `3*y + 1`
+* if it's odd, then turn it into `3*y + 1
+* extra rule: if it's equal to 1, interrupt it (it would otherwise get into a 4-2-1 endless loop
+
+and keeping track of the "tallest" and "widest" sequence obtained so far (progressively increasing the initial value).
+Plot images of such sequences go into `plots/*/`.
 
 ## Requirements
 
