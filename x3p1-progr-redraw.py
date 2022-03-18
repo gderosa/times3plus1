@@ -3,16 +3,17 @@
 
 from glob import glob
 import re
+import json
 
 import matplotlib.pyplot as plt
 
 
-CACHEFILE                       = '.cache.progr.json'
+CACHEFILE                       = '.cache.json'
 
 plt.rcParams['font.family']     = 'monospace'
 plt.rcParams['font.size']       = 14.0
 plt.rcParams['lines.linewidth'] = 1.5
-# "Full HD"
+# "Full HD" 1920x1080
 plt.rcParams['figure.figsize']  = [19.2, 10.8]
 plt.rcParams['savefig.dpi']     = 100
 
@@ -83,6 +84,8 @@ def plot(tallest, widest):
 
 
 def main():
+    cache = []
+
     tallest = [0]
     widest  = [0]
     y_0 = 1
@@ -109,7 +112,14 @@ def main():
             found = True
         if found:
             plot(tallest, widest)
+            cache.append({
+                'tallest_0' : tallest[  0],
+                'widest_0'  : widest[   0]
+            })
         y_0 += 1
+
+    with open(CACHEFILE, 'w') as f:
+                json.dump(cache, f, indent=2)
 
 
 try:
