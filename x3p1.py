@@ -40,7 +40,7 @@ def set_plotting(plt):
     plt.rcParams['figure.figsize']  = [19.2, 10.8]
     plt.rcParams['savefig.dpi']     = 100
 
-def plot(tallest, widest):
+def plot(tallest, widest, force_redraw=False):
     max_x           = len(widest)
     max_y_widest    = max(widest)
     max_x_tallest   = len(tallest)
@@ -80,7 +80,7 @@ def plot(tallest, widest):
     ax.set_ylabel('y_n')
     ax.legend()
     for filename in figfiles:
-        if not exists(filename):
+        if force_redraw or not exists(filename):
             print('Writing: %s' % filename)
             plt.savefig(filename)
     plt.close()
@@ -135,7 +135,7 @@ def main():
                 widest = Y
                 found = True
             if found:
-                plot(tallest, widest)
+                plot(tallest, widest, force_redraw=True)
                 cache['results'].append({
                     'tallest_0': tallest[0],
                     'widest_0': widest[0]
