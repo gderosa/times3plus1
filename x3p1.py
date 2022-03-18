@@ -7,7 +7,7 @@ import json
 import matplotlib.pyplot as plt
 
 
-CACHEFILE                       = '.cache.json'
+CACHEFILE = '.cache.json'
 
 
 def odd(n):
