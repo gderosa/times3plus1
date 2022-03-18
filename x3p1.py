@@ -9,13 +9,6 @@ import matplotlib.pyplot as plt
 
 CACHEFILE                       = '.cache.json'
 
-plt.rcParams['font.family']     = 'monospace'
-plt.rcParams['font.size']       = 14.0
-plt.rcParams['lines.linewidth'] = 1.5
-# "Full HD" 1920x1080
-plt.rcParams['figure.figsize']  = [19.2, 10.8]
-plt.rcParams['savefig.dpi']     = 100
-
 
 def odd(n):
     return n % 2
@@ -33,6 +26,14 @@ def sequence(y_0):
         y = next(y)
         Y.append(y)
     return Y
+
+def set_plotting(plt):
+    plt.rcParams['font.family']     = 'monospace'
+    plt.rcParams['font.size']       = 14.0
+    plt.rcParams['lines.linewidth'] = 1.5
+    # "Full HD" 1920x1080
+    plt.rcParams['figure.figsize']  = [19.2, 10.8]
+    plt.rcParams['savefig.dpi']     = 100
 
 def plot(tallest, widest):
     max_x           = len(widest)
@@ -91,6 +92,8 @@ def main():
     x_MAX   = 0
     y_MAX   = 0
 
+    set_plotting(plt)
+
     if exists(CACHEFILE):
         with open(CACHEFILE) as f:
             cache = json.load(f)
@@ -130,8 +133,9 @@ def main():
         y_0 += 1
 
 
-try:
-    main()
-except KeyboardInterrupt:
-    pass
+if __name__ == '__main__':
+    try:
+        main()
+    except KeyboardInterrupt:
+        pass
 

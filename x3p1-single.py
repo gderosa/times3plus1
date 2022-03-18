@@ -5,28 +5,8 @@ import sys
 
 import matplotlib.pyplot as plt
 
+from x3p1 import set_plotting, sequence
 
-plt.rcParams['font.family']     = 'monospace'
-plt.rcParams['font.size']       = 6.0
-plt.rcParams['lines.linewidth'] = 1
-
-
-def odd(n):
-    return n % 2
-
-def next(y):
-    if odd(y):
-        return y*3 + 1
-    else:
-        return y // 2
-
-def sequence(y_0):
-    y = y_0
-    Y = [y]
-    while y > 1:
-        y = next(y)
-        Y.append(y)
-    return Y
 
 def plot(Y):
     fig, ax = plt.subplots()
@@ -45,6 +25,8 @@ def plot(Y):
     # Optional: If you have an ATI Radeon: https://www.amd.com/en/support/kb/release-notes/rn-amdgpu-unified-linux-21-10
 
 def main():
+    set_plotting(plt)
+
     y_0 = int(float(sys.argv[1]))
     Y = sequence(y_0)
     plot(Y)
