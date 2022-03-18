@@ -1,2 +1,5 @@
 .cache.json
+.cache.progr.json
 *.log
+*.mp4
+__pycache__/
