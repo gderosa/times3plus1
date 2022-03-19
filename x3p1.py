@@ -79,11 +79,14 @@ def plot(tallest, widest, force_redraw=False):
     ax.set_xlabel('n')
     ax.set_ylabel('y_n')
     ax.legend()
+    _written_any = False
     for filename in figfiles:
         if force_redraw or not exists(filename):
             print('Writing: %s' % filename)
             plt.savefig(filename)
+            _written_any = True
     plt.close()
+    if _written_any: print()
 
 def save(cache):
     with open(CACHE_FILE, 'w') as f:
