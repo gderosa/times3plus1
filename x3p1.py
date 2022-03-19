@@ -120,8 +120,8 @@ def main():
 
     try:
         while True:
-            if not y_0 % 1e5:
-                print('Computing @ y_0 =~ %.1fM' % (y_0/1e6))
+            if not y_0 % 1e4:
+                print('Computing @ =~ %.2f M' % (y_0/1e6), end='\r')
             found = False
             Y = sequence(y_0)
             y_max = max(Y)
