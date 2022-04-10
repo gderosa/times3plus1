@@ -5,6 +5,7 @@ import json
 
 import matplotlib.pyplot as plt
 
+
 CACHE_FILE = '.cache.json'
 CACHE_INIT = {
     'current': {
@@ -12,6 +13,7 @@ CACHE_INIT = {
     },
     'results': []
 }
+
 
 def odd(n):
     return n % 2
