@@ -97,7 +97,7 @@ def load(cache_file=CACHE_FILE):
         return json.load(f)
 
 def main():
-    cache = CACHE_INIT
+    cache   = CACHE_INIT
 
     tallest = [0]
     widest  = [0]
