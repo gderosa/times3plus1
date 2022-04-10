@@ -1,11 +1,9 @@
 # https://www.youtube.com/watch?v=094y1Z2wpJg
 
-
 from os.path import exists
 import json
 
 import matplotlib.pyplot as plt
-
 
 CACHE_FILE = '.cache.json'
 CACHE_INIT = {
@@ -46,10 +44,10 @@ def plot(tallest, widest, force_redraw=False):
     max_x_tallest   = len(tallest)
     max_y           = max(tallest)
 
-    tallest_X   = range(max_x_tallest)
-    tallest_Y   = tallest
-    widest_X    = range(max_x)
-    widest_Y    = widest
+    tallest_X       = range(max_x_tallest)
+    tallest_Y       = tallest
+    widest_X        = range(max_x)
+    widest_Y        = widest
 
     tallest_y_init  = tallest[0]
     widest_y_init   = widest[0]
@@ -101,7 +99,7 @@ def main():
 
     tallest = [0]
     widest  = [0]
-    y_0 = 1
+    y_0     = 1
     x_MAX   = 0
     y_MAX   = 0
 
@@ -114,10 +112,10 @@ def main():
                 tallest_0   = cache_item['tallest_0']
                 widest_0    = cache_item[ 'widest_0']
                 print('Using cached initial values @ y_0 = %d' % max(tallest_0, widest_0))
-                tallest = sequence(tallest_0)
-                widest  = sequence( widest_0)
-                y_MAX   = max(max(tallest), y_MAX)
-                x_MAX   = max(len(widest), x_MAX)
+                tallest     = sequence(tallest_0)
+                widest      = sequence( widest_0)
+                y_MAX       = max(max(tallest), y_MAX)
+                x_MAX       = max(len(widest), x_MAX)
                 plot(tallest, widest)
             y_0 = max(tallest_0, widest_0, cache['current']['y_0'])
 
